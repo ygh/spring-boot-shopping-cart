@@ -8,8 +8,9 @@ pipeline {
                echo 'git clone sourcecode.' 
                //git 'https://github.com/ygh/spring-boot-shopping-cart.git'
 	       checkout scm
-               build_tag = sh(returnStdout: true, script: 'git rev-parse --short HEAD').trim()
-			   
+               script {
+                 build_tag = sh(returnStdout: true, script: 'git rev-parse --short HEAD').trim()
+	       }		   
             }
         }
         
