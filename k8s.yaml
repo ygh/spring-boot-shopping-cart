@@ -16,7 +16,7 @@ spec:
       - image: yigongzi/spring-boot-shopping-cart:67
         imagePullPolicy: IfNotPresent
         name: jenkins-spring-boot-demo
-		ports:
+        ports:
         - containerPort: 8070
 
 
@@ -33,6 +33,6 @@ spec:
   ports:
   - name: webapp
     protocol: TCP
-	port: 8070
-	targetPort: 8070
-	nodePort: 8070
+    port: 8070
+    targetPort: 8070
+    nodePort: 8070
