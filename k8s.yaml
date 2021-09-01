@@ -13,6 +13,26 @@ spec:
         app: jenkins-spring-boot-demo
     spec:
       containers:
-      - image: yigongzi/spring-boot-shopping-cart:<BUILD_ID>
+      - image: yigongzi/spring-boot-shopping-cart:67
         imagePullPolicy: IfNotPresent
         name: jenkins-spring-boot-demo
+		ports:
+        - containerPort: 8070
+
+
+---
+apiVersion: apps/v1
+kind: Service
+metadata:
+  name: spring-boot-service
+  namespace: default
+spec:
+  type: NodePort
+  selector:
+    app: jenkins-spring-boot-demo
+  ports:
+  - name: webapp
+    protocol: TCP
+	port: 8070
+	targetPort: 8070
+	nodePort: 8070
