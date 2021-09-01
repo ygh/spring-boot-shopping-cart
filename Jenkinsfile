@@ -19,7 +19,7 @@ pipeline {
                echo 'build cecode.' 
                sh 'printenv'
                sh 'mvn clean package'
-	       sh 'docker build -t yigongzi/spring-boot-shopping-cart:${BUILD_TAG} -f docker/Dockerfile .'
+	       sh 'docker build -t yigongzi/spring-boot-shopping-cart:${BUILD_ID} -f docker/Dockerfile .'
                //sh 'java -version'
                //sh 'echo $M2_HOME'
                
@@ -27,5 +27,14 @@ pipeline {
                //sh 'echo $JAVA_HOME'
             }
         }
+        stage('Push') {
+		steps {
+                  echo "4.Push Docker Image Stage"
+                  withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
+                      sh "docker login -u ${dockerHubUser} -p ${dockerHubPassword}"
+                      sh "docker push yigongzi/spring-boot-shopping-cart:${BUILD_ID}"
+                   }
+               }
+	}
     }
 }
