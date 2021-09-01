@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jenkins-pipeline-deploy-k8s
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      app: jenkins-spring-boot-demo
+  template:
+    metadata:
+      labels:
+        app: jenkins-spring-boot-demo
+    spec:
+      containers:
+      - image: yigongzi/spring-boot-shopping-cart:<BUILD_ID>
+        imagePullPolicy: IfNotPresent
+        name: jenkins-spring-boot-demo
