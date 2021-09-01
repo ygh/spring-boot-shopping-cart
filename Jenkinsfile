@@ -19,7 +19,7 @@ pipeline {
                echo 'build cecode.' 
                sh 'printenv'
                sh 'mvn clean package'
-	       sh 'docker build -t yigongzi/spring-boot-shopping-cart:${BUILD_TAG} -f docker/Dockerfile .'
+	       sh 'sudo docker build -t yigongzi/spring-boot-shopping-cart:${BUILD_TAG} -f docker/Dockerfile .'
                //sh 'java -version'
                //sh 'echo $M2_HOME'
                
