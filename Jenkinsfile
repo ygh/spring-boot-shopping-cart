@@ -39,8 +39,9 @@ pipeline {
 	stage('Deploy') {
 		steps {
                     echo "5. Deploy Stage"
-                    sh "sed -i 's/<BUILD_ID>/${BUILD_ID}/' k8s.yaml"
-                    sh "kubectl apply -f k8s.yaml --record"
+                    //sh "sed -i 's/<BUILD_ID>/${BUILD_ID}/' k8s.yaml"
+                    //sh "kubectl apply -f k8s.yaml --record"
+		    sh "kubectl get pods --all-namespaces"
                }
 	}
     }
