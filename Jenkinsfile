@@ -40,7 +40,7 @@ pipeline {
 		steps {
                     echo "5. Deploy Stage"
                     sh "sed -i 's/<BUILD_ID>/${BUILD_ID}/' k8s.yaml"
-                    withKubeConfig([credentialsId:'e822eaaf-c0e9-43c6-b81b-8c3fd75fef1e',serverUrl: 'https://10.146.0.4:6443']) {
+                    withKubeConfig([credentialsId: 'e822eaaf-c0e9-43c6-b81b-8c3fd75fef1e', serverUrl: 'https://10.146.0.4:6443']) {
                         sh 'kubectl apply -f  k8s.yaml --record'
                     }
 		     //sh "kubectl apply -f k8s.yaml --record"
