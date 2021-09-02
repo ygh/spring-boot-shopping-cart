@@ -18,7 +18,8 @@ pipeline {
             steps { 
                echo 'build cecode.' 
                sh 'printenv'
-               sh 'mvn clean package -DskipTests'
+               //sh 'mvn clean package -DskipTests'
+	       sh 'mvn clean package'
 	       sh 'docker build -t yigongzi/spring-boot-shopping-cart:${BUILD_ID} -f docker/Dockerfile .'
                //sh 'java -version'
                //sh 'echo $M2_HOME'
