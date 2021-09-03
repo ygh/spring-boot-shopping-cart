@@ -13,7 +13,7 @@ spec:
         app: jenkins-spring-boot-demo
     spec:
       containers:
-      - image: yigongzi/spring-boot-shopping-cart:67
+      - image: yigongzi/spring-boot-shopping-cart:<BUILD_ID>
         imagePullPolicy: IfNotPresent
         name: jenkins-spring-boot-demo
         ports:
