@@ -1,7 +1,5 @@
 pipeline { 
-  //agent any
-  agent('jenkins-slave-jnlp'){
-    
+  agent any
     stages { 
         stage('prepare') { 
             steps { 
@@ -47,5 +45,4 @@ pipeline {
                }
 	}
     }
-  }
 }
