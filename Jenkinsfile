@@ -1,4 +1,5 @@
 pipeline { 
+  agent any
   node('jenkins-slave-auto'){
     
     stages { 
