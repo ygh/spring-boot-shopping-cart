@@ -1,6 +1,6 @@
 pipeline { 
   //agent any
-  node('jenkins-slave-jnlp'){
+  agent('jenkins-slave-jnlp'){
     
     stages { 
         stage('prepare') { 
