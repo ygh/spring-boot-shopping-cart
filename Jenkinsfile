@@ -1,6 +1,6 @@
 //pipeline { 
   //agent any
-  node('jenkins-slave-auto'){
+  node('jenkins-slave'){
     
     stages { 
         stage('prepare') { 
