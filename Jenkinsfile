@@ -1,5 +1,5 @@
-pipeline { 
-  agent any
+//pipeline { 
+  //agent any
   node('jenkins-slave-auto'){
     
     stages { 
@@ -48,4 +48,4 @@ pipeline {
 	}
     }
   }
-}
+//}
