@@ -1,4 +1,4 @@
-node('jenkins-slave') { 
+node('jenkins-slave-jnlp') { 
     stages { 
         stage('prepare') { 
             steps { 
