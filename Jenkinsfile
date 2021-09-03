@@ -1,5 +1,4 @@
 node('jenkins-slave-jnlp') { 
-    stages { 
         stage('prepare') { 
                   echo 'git clone sourcecode.' 
                   //git 'https://github.com/ygh/spring-boot-shopping-cart.git'
@@ -34,6 +33,4 @@ node('jenkins-slave-jnlp') {
 		          sh 'kubectl apply -f  k8s.yaml --record'
 		       }
 	    }
-    }
 }
-
