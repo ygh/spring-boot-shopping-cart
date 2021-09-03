@@ -1,5 +1,5 @@
 pipeline { 
-    agent any 
+    agent 'jenkins-slave-auto'
     
     stages { 
         stage('prepare') { 
