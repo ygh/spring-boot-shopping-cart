@@ -1,4 +1,4 @@
-//pipeline { 
+pipeline { 
   //agent any
   node('jenkins-slave-jnlp'){
     
@@ -48,4 +48,4 @@
 	}
     }
   }
-//}
+}
