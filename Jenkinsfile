@@ -1,5 +1,5 @@
 pipeline { 
-    agent 'jenkins-slave-auto'
+  node('jenkins-slave-auto'){
     
     stages { 
         stage('prepare') { 
@@ -46,4 +46,5 @@ pipeline {
                }
 	}
     }
+  }
 }
