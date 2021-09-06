@@ -1,4 +1,7 @@
 node('jenkins-slave-jnlp') { 
+	tools {
+	   maven 'maven'
+	}
         stage('prepare') { 
                   echo 'git clone sourcecode.' 
                   //git 'https://github.com/ygh/spring-boot-shopping-cart.git'
