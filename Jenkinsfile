@@ -14,7 +14,10 @@ node('haimaxy-jnlp') {
     
     stage('代码测试') {
       echo "2.Test Stage"
-      sh 'printenv'
+      script {
+        sh 'printenv'
+        sh 'echo ${build_tag}'
+      }
     }
 	
     stage('编译代码') { 
