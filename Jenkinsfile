@@ -21,7 +21,9 @@ node('haimaxy-jnlp') {
 	    echo "333333333333333333 ${build_tag} 333333333333333333333333333333"
         sh 'mvn clean package -DskipTests'
         steps {
-          sh '''docker build -t yigongzi/spring-boot-shopping-cart:${build_tag} -f docker/Dockerfile .'''
+          sh '''
+	    docker build -t yigongzi/spring-boot-shopping-cart:${build_tag} -f docker/Dockerfile .
+	    '''
 	}
     }
 	
