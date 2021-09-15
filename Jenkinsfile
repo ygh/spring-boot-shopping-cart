@@ -1,5 +1,4 @@
-node('haimaxy-jnlp') { 
-  stages { 
+node('haimaxy-jnlp') {
     stage('获取代码') { 
         echo '1.git clone sourcecode.' 
         //git 'https://github.com/ygh/spring-boot-shopping-cart.git'
@@ -21,5 +20,4 @@ node('haimaxy-jnlp') {
         sh 'printenv'
         echo "${build_tag}"
     }
-  }
 }
