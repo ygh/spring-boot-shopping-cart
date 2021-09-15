@@ -1,4 +1,5 @@
 node('haimaxy-jnlp') { 
+  stages { 
     stage('获取代码') { 
         echo '1.git clone sourcecode.' 
         //git 'https://github.com/ygh/spring-boot-shopping-cart.git'
@@ -40,4 +41,5 @@ node('haimaxy-jnlp') {
         sh "sed -i 's/<BRANCH_NAME>/${env.BRANCH_NAME}/' k8s.yaml"
         sh 'kubectl apply -f  k8s.yaml --record'
     }
+  }
 }
