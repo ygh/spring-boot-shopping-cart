@@ -8,12 +8,13 @@ node('haimaxy-jnlp') {
            if (env.BRANCH_NAME != 'master') {
               build_tag = "${env.BRANCH_NAME}-${build_tag}"
            }
-        }		   
+        }
+	echo "11111  ${build_tag} +++++++++++++"
     }
     
     stage('代码测试') {
       echo "2.Test Stage"
-      echo "++++  ${build_tag} +++++++++++++"
+      echo "22222  ${build_tag} +++++++++++++"
     }
 	
     stage('编译代码') { 
