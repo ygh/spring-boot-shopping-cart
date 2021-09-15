@@ -14,37 +14,12 @@ node('haimaxy-jnlp') {
     
     stage('代码测试') {
       echo "2.Test Stage"
-      script {
-	echo "======================="
-        sh 'printenv'
-        sh 'echo ${build_tag}'
-	echo "++++++++++++++++++++++++++++"
-      }
     }
 	
     stage('编译代码') { 
         echo '3.build cecode.' 
-        //sh 'printenv'
-        sh 'mvn clean package -DskipTests'
-        script {
-          sh 'docker build -t yigongzi/spring-boot-shopping-cart:${build_tag} -f docker/Dockerfile .'
-	}
-    }
-	
-    stage('推送镜像') {
-        echo "4.Push Docker Image Stage"
-        stript {
-            withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
-              sh "docker login -u ${dockerHubUser} -p ${dockerHubPassword}"
-              sh "docker push yigongzi/spring-boot-shopping-cart:${build_tag}"
-	    }
-        }
-    }
-    stage('部署服务') {
-        echo "5.Deploy service"
-        sh "sed -i 's/<BUILD_TAG>/${build_tag}/' k8s.yaml"
-        sh "sed -i 's/<BRANCH_NAME>/${env.BRANCH_NAME}/' k8s.yaml"
-        sh 'kubectl apply -f  k8s.yaml --record'
+        sh 'printenv'
+	echo "${build_tag}"
     }
   }
 }
