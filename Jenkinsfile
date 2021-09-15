@@ -11,9 +11,7 @@ node('haimaxy-jnlp') {
     stage('build') { 
         echo 'build cecode.' 
         sh 'printenv'
-        withMaven {
-            sh 'mvn clean package -DskipTests'
-        }
+        sh 'mvn clean package -DskipTests'
         sh 'docker build -t yigongzi/spring-boot-shopping-cart:${BUILD_ID} -f docker/Dockerfile .'
     }
 	
