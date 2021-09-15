@@ -20,9 +20,7 @@ node('haimaxy-jnlp') {
         //sh 'printenv'
 	    echo "333333333333333333 ${build_tag} 333333333333333333333333333333"
         sh 'mvn clean package -DskipTests'
-        script {
-          sh 'docker build -t yigongzi/spring-boot-shopping-cart:${build_tag} -f docker/Dockerfile .'
-	    }
+        sh 'docker build -t yigongzi/spring-boot-shopping-cart:${build_tag} -f docker/Dockerfile .'
     }
 	
     stage('推送镜像') {
