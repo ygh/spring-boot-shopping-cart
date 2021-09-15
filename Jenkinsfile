@@ -13,6 +13,7 @@ node('haimaxy-jnlp') {
     
     stage('代码测试') {
       echo "2.Test Stage"
+      echo "++++  ${build_tag} +++++++++++++"
     }
 	
     stage('编译代码') { 
