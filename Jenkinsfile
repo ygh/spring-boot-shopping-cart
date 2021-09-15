@@ -1,4 +1,4 @@
-node('jenkins-slave-jnlp') { 
+node('haimaxy-jnlp') { 
     stage('prepare') { 
         echo 'git clone sourcecode.' 
         //git 'https://github.com/ygh/spring-boot-shopping-cart.git'
