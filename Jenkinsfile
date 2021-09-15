@@ -19,14 +19,18 @@ node('haimaxy-jnlp') {
         echo '3.build cecode.' 
         //sh 'printenv'
         sh 'mvn clean package -DskipTests'
-        sh 'docker build -t yigongzi/spring-boot-shopping-cart:${build_tag} -f docker/Dockerfile .'
+        script {
+          sh 'docker build -t yigongzi/spring-boot-shopping-cart:${build_tag} -f docker/Dockerfile .'
+	}
     }
 	
     stage('推送镜像') {
         echo "4.Push Docker Image Stage"
-        withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
-            sh "docker login -u ${dockerHubUser} -p ${dockerHubPassword}"
-            sh "docker push yigongzi/spring-boot-shopping-cart:${build_tag}"
+        stript {
+            withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
+              sh "docker login -u ${dockerHubUser} -p ${dockerHubPassword}"
+              sh "docker push yigongzi/spring-boot-shopping-cart:${build_tag}"
+	    }
         }
     }
     stage('部署服务') {
