@@ -19,8 +19,8 @@ node('haimaxy-jnlp') {
         echo '3.build cecode.' 
         //sh 'printenv'
         script {
-            mvn clean package -DskipTests
-	    docker build -t yigongzi/spring-boot-shopping-cart:${build_tag} -f docker/Dockerfile .
+            //mvn clean package -DskipTests
+	    //docker build -t yigongzi/spring-boot-shopping-cart:${build_tag} -f docker/Dockerfile .
         }
     }
 	
