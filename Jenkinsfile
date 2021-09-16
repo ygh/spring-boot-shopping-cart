@@ -27,6 +27,9 @@ node('haimaxy-jnlp') {
     }
     stage('部署服务') {
         echo "5.Deploy service"
+        if (env.BRANCH_NAME == 'master') {
+            input "确认要部署线上环境吗？"
+        }
         sh "sed -i 's/<BUILD_ID>/${BUILD_ID}/' k8s.yaml"
         sh 'kubectl apply -f  k8s.yaml --record'
     }
