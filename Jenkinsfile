@@ -18,15 +18,15 @@ node('haimaxy-jnlp') {
     stage('编译代码') { 
         echo '3.build cecode.' 
         //sh 'printenv'
-        stript {
-             mvn clean package -DskipTests
+        script {
+            mvn clean package -DskipTests
 	    docker build -t yigongzi/spring-boot-shopping-cart:${build_tag} -f docker/Dockerfile .
         }
     }
 	
     stage('推送镜像') {
         echo "4.Push Docker Image Stage"
-        stript {
+        script {
             withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
               sh "docker login -u ${dockerHubUser} -p ${dockerHubPassword}"
               sh "docker push yigongzi/spring-boot-shopping-cart:${build_tag}"
