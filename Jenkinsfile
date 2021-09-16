@@ -19,7 +19,7 @@ node('haimaxy-jnlp') {
     stage('编译代码') { 
         echo '3.build cecode.' 
         //sh 'printenv'
-	docker build -t yigongzi/spring-boot-shopping-cart:${env.build_tag} -f docker/Dockerfile .
+	sh 'docker build -t yigongzi/spring-boot-shopping-cart:${env.build_tag} -f docker/Dockerfile .'
       
     }
 }
