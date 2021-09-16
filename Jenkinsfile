@@ -19,6 +19,7 @@ node('haimaxy-jnlp') {
     stage('编译代码') { 
         echo '3.build cecode.' 
         //sh 'printenv'
+	sh 'mvn clean package -DskipTests'
 	sh 'docker build -t yigongzi/spring-boot-shopping-cart:${env.build_tag} -f docker/Dockerfile .'
       
     }
