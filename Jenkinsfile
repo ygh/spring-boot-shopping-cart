@@ -21,7 +21,7 @@ node('haimaxy-jnlp') {
         script {
             withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
               sh "docker login -u ${dockerHubUser} -p ${dockerHubPassword}"
-              sh "docker push yigongzi/spring-boot-shopping-cart:${build_tag}"
+              sh "docker push yigongzi/spring-boot-shopping-cart:${BUILD_ID}"
 	        }
         }
     }
