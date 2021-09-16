@@ -13,14 +13,11 @@ spec:
         app: jenkins-spring-boot-demo
     spec:
       containers:
-      - image: yigongzi/spring-boot-shopping-cart:<BUILD_TAG>
+      - image: yigongzi/spring-boot-shopping-cart:<BUILD_ID>
         imagePullPolicy: IfNotPresent
         name: jenkins-spring-boot-demo
         ports:
         - containerPort: 8070
-        env:
-        - name: branch
-          value: <BRANCH_NAME>
 
 
 ---
