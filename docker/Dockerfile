@@ -15,5 +15,4 @@ COPY target/shopping-cart-0.0.1-SNAPSHOT.jar $APP_HOME/app.jar
 
 WORKDIR $APP_HOME
 
-#ENTRYPOINT exec java -jar -Duser.timezone=Asia/Shanghai app.jar
 ENTRYPOINT exec java -jar app.jar
