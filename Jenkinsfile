@@ -31,6 +31,7 @@ node('haimaxy-jnlp') {
             input "确认要部署线上环境吗？"
         }
         sh "sed -i 's/<BUILD_ID>/${BUILD_ID}/' k8s.yaml"
+		echo "部署到k8s集群"
         sh 'kubectl apply -f  k8s.yaml --record'
     }
 }
