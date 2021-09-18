@@ -2,7 +2,13 @@ node('haimaxy-jnlp') {
     stage('获取代码') { 
         echo '1.git clone sourcecode.' 
         //git 'https://github.com/ygh/spring-boot-shopping-cart.git'
-        checkout scm   
+        checkout scm
+		script {
+            build_tag = sh(returnStdout: true, script: 'git rev-parse --short HEAD').trim()
+            if (env.BRANCH_NAME != 'master') {
+                build_tag = "${env.BRANCH_NAME}-${build_tag}"
+            }
+        }
     }
     
     stage('代码测试') {
@@ -13,7 +19,7 @@ node('haimaxy-jnlp') {
         echo '3.build cecode.' 
         //sh 'printenv'
         sh 'mvn clean package -DskipTests'
-	    sh 'docker build -t yigongzi/spring-boot-shopping-cart:${BUILD_ID} -f docker/Dockerfile .'
+	    sh "docker build -t yigongzi/spring-boot-shopping-cart:${build_tag} -f docker/Dockerfile ."
     }
 	
     stage('推送镜像') {
@@ -21,7 +27,7 @@ node('haimaxy-jnlp') {
         script {
             withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
               sh "docker login -u ${dockerHubUser} -p ${dockerHubPassword}"
-              sh "docker push yigongzi/spring-boot-shopping-cart:${BUILD_ID}"
+              sh "docker push yigongzi/spring-boot-shopping-cart:${build_tag}"
 	        }
         }
     }
@@ -30,8 +36,7 @@ node('haimaxy-jnlp') {
         if (env.BRANCH_NAME == 'master') {
             input "确认要部署线上环境吗？"
         }
-        sh "sed -i 's/<BUILD_ID>/${BUILD_ID}/' k8s.yaml"
-		echo "部署到k8s集群"
+        sh "sed -i 's/<BUILD_TAG>/${build_tag}/' k8s.yaml"
         sh 'kubectl apply -f  k8s.yaml --record'
     }
 }
