@@ -1,4 +1,4 @@
-node('haimaxy-jnlp') { 
+node('docker-maven-kubelet') { 
     stage('获取代码') { 
         echo '1.git clone sourcecode.' 
         //git 'https://github.com/ygh/spring-boot-shopping-cart.git'
